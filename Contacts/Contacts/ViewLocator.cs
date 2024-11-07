@@ -1,12 +1,24 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using Contacts.ViewModels;
+using Contacts.ViewModels.Sidebar;
+using Contacts.Views;
 using System;
+using System.Collections.Generic;
 
 namespace Contacts
 {
     public class ViewLocator : IDataTemplate
     {
+        private readonly Dictionary<Type, Func<Control?>> _locator = new();
+
+        public ViewLocator()
+        {
+            RegisterViewFactory<MainViewModel, MainWindow>();
+            RegisterViewFactory<MainSidebarViewModel, MainSidebarView>();
+        }
+
         public Control? Build(object? data)
         {
             if (data is null)
@@ -27,5 +39,16 @@ namespace Contacts
         {
             return data is ViewModelBase;
         }
+
+
+        private void RegisterViewFactory<TViewModel, TView>()
+        where TViewModel : class
+        where TView : Control
+        => _locator.Add(
+            typeof(TViewModel),
+            Design.IsDesignMode
+                ? Activator.CreateInstance<TView>
+                : Ioc.Default.GetService<TView>);
+
     }
 }
