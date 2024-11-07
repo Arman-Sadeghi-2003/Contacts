@@ -1,14 +1,17 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using Contacts.Data.DataContext;
 using Contacts.ViewModels;
 using Contacts.ViewModels.Sidebar;
 using Contacts.Views;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
 
 namespace Contacts
 {
@@ -19,12 +22,41 @@ namespace Contacts
             AvaloniaXamlLoader.Load(this);
         }
 
-        public override void OnFrameworkInitializationCompleted()
+        public async override void OnFrameworkInitializationCompleted()
         {
+            if (!Directory.Exists(ContactDbContextHandler.ContactLocalDirectory))
+                Directory.CreateDirectory(ContactDbContextHandler.ContactLocalDirectory);
+
             var locator = new ViewLocator();
             DataTemplates.Add(locator);
 
             var services = new ServiceCollection();
+
+            services.AddDbContext<ContactDbContext>(options =>
+            {
+                options.UseSqlite($"Data Source={ContactDbContextHandler.DbFullPath}");
+            }, ServiceLifetime.Singleton);
+
+            using (var scope = services.BuildServiceProvider().CreateScope())
+            {
+
+                var dbContext = scope.ServiceProvider.GetRequiredService<ContactDbContext>();
+                var pendingMigration = dbContext.Database.GetPendingMigrations();
+
+                if (pendingMigration.Any())
+                {
+                    try
+                    {
+                        await dbContext.Database.MigrateAsync();
+                    }
+                    catch
+                    {
+                        dbContext.Database.EnsureDeleted();
+                        await dbContext.Database.MigrateAsync();
+                    }
+                }
+            }
+
             ConfigureViewModels(services);
             ConfigureViews(services);
 
@@ -36,8 +68,6 @@ namespace Contacts
 
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                // Line below is needed to remove Avalonia data validation.
-                // Without this line you will get duplicate validations from both Avalonia and CT
                 BindingPlugins.DataValidators.RemoveAt(0);
                 desktop.MainWindow = new MainWindow
                 {
