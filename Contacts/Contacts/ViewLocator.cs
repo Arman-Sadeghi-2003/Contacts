@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using Contacts.ViewModels;
 using Contacts.ViewModels.Sidebar;
 using Contacts.Views;
+using Contacts.Views.Sidebar;
 using System;
 using System.Collections.Generic;
 
@@ -17,6 +18,7 @@ namespace Contacts
         {
             RegisterViewFactory<MainViewModel, MainWindow>();
             RegisterViewFactory<MainSidebarViewModel, MainSidebarView>();
+            RegisterViewFactory<SidebarItemViewModel, SidebarItemView>();
         }
 
         public Control? Build(object? data)

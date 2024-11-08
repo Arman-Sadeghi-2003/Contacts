@@ -1,10 +1,19 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Contacts.ViewModels.Sidebar;
 
 namespace Contacts.ViewModels
 {
     public partial class MainViewModel : ViewModelBase
     {
         [ObservableProperty]
-        private string _greeting = "Welcome to Avalonia!";
+        private ViewModelBase _sidebarControl;
+
+        [ObservableProperty]
+        private ViewModelBase _centerControl;
+
+        public MainViewModel()
+        {
+            SidebarControl = new MainSidebarViewModel();
+        }
     }
 }
