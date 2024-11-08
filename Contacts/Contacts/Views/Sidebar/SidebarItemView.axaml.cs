@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace Contacts.Views.Sidebar;
 
-public partial class MainSidebarView : UserControl
+public partial class SidebarItemView : UserControl
 {
-    public MainSidebarView()
+    public SidebarItemView()
     {
         InitializeComponent();
     }

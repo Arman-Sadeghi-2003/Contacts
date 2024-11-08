@@ -2,7 +2,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Contacts.MainSidebarView">
-  Welcome to Avalonia!
+             xmlns:itemView="clr-namespace:Contacts.Views.Sidebar"
+             xmlns:vm="clr-namespace:Contacts.ViewModels.Sidebar"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="900"
+             x:DataType="vm:MainSidebarViewModel"
+             Background="Transparent"
+             x:Class="Contacts.Views.Sidebar.MainSidebarView">
+  <Grid RowDefinitions="auto *" Background="Transparent">
+    <StackPanel Orientation="Horizontal">
+      <TextBlock Text="Title" FontWeight="Bold" FontSize="20" Margin="10 5"/>
+    </StackPanel>
+
+    <Border Grid.Row="1" Margin="10" Background="Transparent" BorderBrush="Red" BorderThickness="0 0 5 0"
+            CornerRadius="10">
+      <ListBox Background="Transparent">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <itemView:SidebarItemView/>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Border>
+  </Grid>
 </UserControl>

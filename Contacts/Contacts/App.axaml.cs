@@ -7,6 +7,7 @@ using Contacts.Data.DataContext;
 using Contacts.ViewModels;
 using Contacts.ViewModels.Sidebar;
 using Contacts.Views;
+using Contacts.Views.Sidebar;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
