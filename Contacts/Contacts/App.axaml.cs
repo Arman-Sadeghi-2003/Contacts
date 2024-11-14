@@ -91,6 +91,7 @@ namespace Contacts
         {
             services.AddSingleton(typeof(MainViewModel));
             services.AddTransient(typeof(MainSidebarViewModel));
+            services.AddTransient(typeof(SidebarItemViewModel));
         }
 
         internal static void ConfigureViews(IServiceCollection services)

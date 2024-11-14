@@ -11,6 +11,7 @@
         BorderBrush="Turquoise"
         BorderThickness="1 2 3 4"
         SystemDecorations="None"
+        WindowStartupLocation="CenterScreen"
         x:Class="Contacts.MessageBoxView"
         x:DataType="vm:MessageBoxView"
         Title="MessageBoxView">
@@ -26,7 +27,7 @@
     
     <Button Grid.Row="2" Content="Okay" VerticalAlignment="Center" HorizontalAlignment="Center"
             Margin="10" BorderBrush="Turquoise" BorderThickness="1 2 3 4"
-            Background="#10FFFFFF"/>
+            Background="#10FFFFFF" Click="Button_Click"/>
     
   </Grid>
   

@@ -8,20 +8,24 @@
              x:DataType="vm:MainSidebarViewModel"
              Background="Transparent"
              x:Class="Contacts.Views.Sidebar.MainSidebarView">
-  <Grid RowDefinitions="auto *" Background="Transparent">
-    <StackPanel Orientation="Horizontal">
+  <Border BorderBrush="Turquoise" BorderThickness="0 0 5 0"
+          CornerRadius="10">
+    <Grid RowDefinitions="auto * auto" Background="Transparent">
       <TextBlock Text="Title" FontWeight="Bold" FontSize="20" Margin="10 5"/>
-    </StackPanel>
 
-    <Border Grid.Row="1" Margin="10" Background="Transparent" BorderBrush="Red" BorderThickness="0 0 5 0"
-            CornerRadius="10">
-      <ListBox Background="Transparent">
+      <ListBox Grid.Row="1" Background="Transparent" ItemsSource="{Binding SidebarItems}">
         <ListBox.ItemTemplate>
           <DataTemplate>
             <itemView:SidebarItemView/>
           </DataTemplate>
         </ListBox.ItemTemplate>
       </ListBox>
-    </Border>
-  </Grid>
+      
+      <Button Grid.Row="2" Content="&#10133;" CornerRadius="200" Padding="6" Margin="10"
+              ToolTip.Tip="Add contact." Background="Transparent" BorderBrush="Turquoise"
+              BorderThickness="2"/>
+      
+    </Grid>
+  </Border>
+    
 </UserControl>

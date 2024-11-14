@@ -7,7 +7,27 @@
              x:DataType="vm:SidebarItemViewModel"
              Background="Transparent"
              x:Class="Contacts.Views.Sidebar.SidebarItemView">
-  <Grid Background="Transparent">
-    
-  </Grid>
+  <Border CornerRadius="0 0 10 5" BorderBrush="Turquoise" BorderThickness="0 0 0 2">
+    <Grid Background="Transparent" ColumnDefinitions="auto * auto">
+      <Viewbox IsVisible="True">
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center">
+          &#128526;
+        </Label>
+      </Viewbox>
+
+      <Viewbox>
+        <Border CornerRadius="200">
+          <Image/>
+        </Border>
+      </Viewbox>
+
+      <TextBlock Grid.Column="1" FontWeight="Bold"
+                 Text="Person Title" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0"/>
+
+      <Button Grid.Column="2" CornerRadius="200" FontWeight="Bold" Background="Transparent" Padding="5" 
+              BorderBrush="Turquoise" BorderThickness="1" Command="{Binding MoreOptionsCommand}">
+        &#8286;
+      </Button>
+    </Grid>
+  </Border>
 </UserControl>

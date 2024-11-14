@@ -12,6 +12,8 @@
     <vm:MainViewModel />
   </Design.DataContext>
   <Grid ColumnDefinitions="350 *">
-    <TransitioningContentControl Content="{Binding SidebarControl}"/>
+    <TransitioningContentControl Content="{Binding SidebarControl}" Margin="0 10"/>
+    
+    <TransitioningContentControl Grid.Column="1" Content="{Binding CenterControl}" Margin="10"/>
   </Grid>
 </UserControl>

@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             Background="Transparent"
+             x:Class="Contacts.Views.Home.HomeView">
+
+  <UserControl.Styles>
+    <Style Selector="Button:pointerover">
+      <Setter Property="Background" Value="#30FFFFFF"/>
+      <Setter Property="Foreground" Value="AliceBlue"/>
+      <Setter Property="BorderBrush" Value="Red"/>
+    </Style>
+  </UserControl.Styles>
+
+  <Border CornerRadius="10" BorderBrush="Turquoise" BorderThickness="5 0 0 0">
+    <Grid RowDefinitions="auto * auto" >
+      <Border CornerRadius="300" BorderBrush="Turquoise" BorderThickness="1 2 3 4"
+              VerticalAlignment="Center" HorizontalAlignment="Center"
+              Width="100" Height="100">
+        <Viewbox IsVisible="True">
+          <Label HorizontalAlignment="Center" VerticalAlignment="Center">
+            &#128526;
+          </Label>
+        </Viewbox>
+      </Border>
+
+      <ScrollViewer Grid.Row="1">
+        <Grid Grid.Row="1" ColumnDefinitions="* *" RowDefinitions="* * *">
+          <Grid >
+            
+          </Grid>
+
+          <Grid Grid.Row="1">
+            
+          </Grid>
+        </Grid>
+      </ScrollViewer>
+
+      <StackPanel Grid.Row="2" Orientation="Horizontal">
+        <Button Content="Save" CornerRadius="10" Background="Transparent" BorderBrush="Turquoise"
+                Margin="10 10 0 10" BorderThickness="2"/>
+        <Button Content="Save" CornerRadius="10" Background="Transparent" BorderBrush="Turquoise"
+                Margin="10" BorderThickness="2"/>
+      </StackPanel>
+      
+    </Grid>
+  </Border>
+</UserControl>

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Contacts.ViewModels.Home;
 using Contacts.ViewModels.Sidebar;
 
 namespace Contacts.ViewModels
@@ -14,6 +15,7 @@ namespace Contacts.ViewModels
         public MainViewModel()
         {
             SidebarControl = new MainSidebarViewModel();
+            CenterControl = new HomeViewModel();
         }
     }
 }
