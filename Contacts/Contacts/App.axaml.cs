@@ -4,6 +4,8 @@ using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Contacts.Data.DataContext;
+using Contacts.Data.Repositories.Implementations;
+using Contacts.Data.Repositories.Interfaces;
 using Contacts.ViewModels;
 using Contacts.ViewModels.Sidebar;
 using Contacts.Views;
@@ -27,7 +29,7 @@ namespace Contacts
         {
             if (!Directory.Exists(ContactDbContextHandler.ContactLocalDirectory))
                 Directory.CreateDirectory(ContactDbContextHandler.ContactLocalDirectory);
-
+            
             var locator = new ViewLocator();
             DataTemplates.Add(locator);
 
@@ -60,6 +62,7 @@ namespace Contacts
 
             ConfigureViewModels(services);
             ConfigureViews(services);
+            configureRepositories(services);
 
             var provider = services.BuildServiceProvider();
 
@@ -98,6 +101,15 @@ namespace Contacts
         {
             services.AddSingleton(typeof(MainWindow));
             services.AddTransient(typeof(MainSidebarView));
+        }
+
+        internal static void configureRepositories(IServiceCollection services)
+        {
+            services.AddTransient<IPersonRepository, PersonRepository>();
+            services.AddTransient<IOrganizationRepository, OrganizationRepository>();
+            services.AddTransient<IPhoneNumberRepository, PhoneNumberRepository>();
+            services.AddTransient<IMailRepository, MailRepository>();
+            services.AddTransient<IAddressRepository, AddressRepository>();
         }
 
     }

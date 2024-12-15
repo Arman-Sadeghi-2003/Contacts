@@ -41,7 +41,7 @@
       <StackPanel Grid.Row="2" Orientation="Horizontal">
         <Button Content="Save" CornerRadius="10" Background="Transparent" BorderBrush="Turquoise"
                 Margin="10 10 0 10" BorderThickness="2"/>
-        <Button Content="Save" CornerRadius="10" Background="Transparent" BorderBrush="Turquoise"
+        <Button Content="Cancel" CornerRadius="10" Background="Transparent" BorderBrush="Turquoise"
                 Margin="10" BorderThickness="2"/>
       </StackPanel>
       
